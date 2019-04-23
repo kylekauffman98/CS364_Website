@@ -1,0 +1,146 @@
+<!-- This html file displays the home page, allowing students to navigate to other webpages and view all program descriptions.-->
+
+<html>
+<head>
+<link rel="stylesheet" href="csl.css">
+
+<script>
+function openCity(evt, cityName) {
+  // Declare all variables
+  var i, tabcontent, tablinks;
+
+  // Get all elements with class="tabcontent" and hide them
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+
+  // Get all elements with class="tablinks" and remove the class "active"
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+
+  // Show the current tab, and add an "active" class to the button that opened the tab
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+</script>
+
+</head>
+<body >
+<div id="header">
+<h1><div><span>Cadet Summer Program Portal</span></div></h1>
+</div>
+<ul class="links">
+
+  <li><a href="index.html">Home</a></li>
+  <li><a href="final.html">Final Schedule</a></li>
+  <li><a href="request.html">Make Requests</a></li>
+</ul>
+<br>
+<section>
+<nav>
+<h2>Instructions </h2>
+<p>Please go to the Make Request tab and pick your summer prefrences</p>
+</nav>
+<article class="container">
+
+
+
+<!-- Tab links -->
+<div class="tab">
+  <button class="tablinks" onclick="openCity(event, 'Leave')">Leave</button>
+  <button class="tablinks" onclick="openCity(event, 'Academics')">Academics</button>
+  <button class="tablinks" onclick="openCity(event, 'Cyber')">Cyber</button>
+  <button class="tablinks" onclick="openCity(event, 'Space')">Space</button>
+  <button class="tablinks" onclick="openCity(event, 'Jump')">Jump</button>
+  <button class="tablinks" onclick="openCity(event, 'RPA')">RPA</button>
+  <button class="tablinks" onclick="openCity(event, 'Soaring')">Soaring</button>
+  <button class="tablinks" onclick="openCity(event, 'BCT')">BCT</button>
+  <button class="tablinks" onclick="openCity(event, 'EST')">EST</button>
+  <button class="tablinks" onclick="openCity(event, 'OpsAF')">Ops AF</button>
+  <button class="tablinks" onclick="openCity(event, 'OpsGroup')">Ops Group</button>
+  <button class="tablinks" onclick="openCity(event, 'SummerCamp')">Summer Camp</button>
+  <button class="tablinks" onclick="openCity(event, 'CSRP')">CSRP</button>
+</div>
+
+<!-- Tab content -->
+<div id="Leave" class="tabcontent">
+  <h3>Leave</h3>
+  <p>Inlcude Discription here</p>
+</div>
+<div id="Academics" class="tabcontent">
+  <h3>Academics</h3>
+  <p>Inlcude Discription here</p>
+</div>
+<div id="Cyber" class="tabcontent">
+  <h3>Cyber Defense Course</h3>
+  <p>Inlcude Discription here</p>
+</div>
+<div id="Space" class="tabcontent">
+  <h3>Space Essentials Course</h3>
+  <p>Inlcude Discription here</p>
+</div>
+<div id="Jump" class="tabcontent">
+  <h3>AM490 JUMP</h3>
+  <p>Inlcude Discription here</p>
+</div>
+<div id="RPA" class="tabcontent">
+  <h3>Remotely Piloted Aircraft</h3>
+  <p>Inlcude Discription here</p>
+</div>
+<div id="Soaring" class="tabcontent">
+  <h3>Soaring</h3>
+  <p>Inlcude Discription here</p>
+</div>
+<div id="BCT" class="tabcontent">
+  <h3>Basic Cadet Training</h3>
+  <p>Inlcude Discription here</p>
+</div>
+<div id="OpsAF" class="tabcontent">
+  <h3>Operations Air Force</h3>
+  <p>Inlcude Discription here</p>
+</div>
+<div id="OpsGroup" class="tabcontent">
+  <h3>Operations Group</h3>
+  <p>Inlcude Discription here</p>
+</div>
+<div id="SummerCamp" class="tabcontent">
+  <h3>Summer Camp</h3>
+  <p>Inlcude Discription here</p>
+</div>
+<div id="EST" class="tabcontent">
+  <h3>Evasion and Survival Training</h3>
+  <p>Inlcude Discription here</p>
+</div>
+<div id="CSRP" class="tabcontent">
+  <h3>Cadet Summer Research Program</h3>
+  <p>Inlcude Discription here</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+</section>
+
+</body>
+</html>
