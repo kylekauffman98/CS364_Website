@@ -78,7 +78,7 @@ function openCity(evt, cityName) {
 
 						 // determine how many rows were returned
 						if($result->num_rows === 0){ 
-							exit('No rows');
+							exit('Enter your ID number to view your schedule');
 						}
 						else{
 						 $num_results = $result->num_rows;
