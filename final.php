@@ -71,7 +71,7 @@ function openCity(evt, cityName) {
 						 }
 						 // run the SQL query to retrieve the service partner info
 
-						 $results = $db->prepare('SELECT c.studentID, c.studentFN, c.studentLN, s.periodNum, p.programName FROM cadet c INNER JOIN schedule s ON c.studentID = s.studentID INNER JOIN program p ON s.programID = p.programID WHERE c.studentID = ? ORDER BY s.periodNum ASC;');
+						 $results = $db->prepare('SELECT c.studentID, c.studentFN, c.studentLN, s.periodNum, p.programName FROM cadet c INNER JOIN finalSchedule s ON c.studentID = s.studentID INNER JOIN program p ON s.programID = p.programID WHERE c.studentID = ? ORDER BY s.periodNum ASC;');
 						 $results->bind_param("i", $input);
 						 $results->execute();
 						 $result = $results->get_result();

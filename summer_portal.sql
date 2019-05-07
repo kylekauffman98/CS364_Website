@@ -16,7 +16,7 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `csl`
+-- Database: `summer_portal`
 --
 
 CREATE DATABASE IF NOT EXISTS summer_portal DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
@@ -26,7 +26,7 @@ USE `summer_portal`;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `partners`
+-- Table structure for table `cadet`
 --
 
 CREATE TABLE IF NOT EXISTS `cadet` (
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `cadet` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `partners`
+-- Adding data into cadet
 --
 
 INSERT INTO `cadet` (`studentID`, `studentFN`, `studentLN`) VALUES
@@ -47,7 +47,7 @@ INSERT INTO `cadet` (`studentID`, `studentFN`, `studentLN`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Table structure for table `schedule`
 --
 
 CREATE TABLE IF NOT EXISTS `schedule` (
@@ -70,7 +70,7 @@ INSERT INTO `schedule` (`studentID`, `periodNum`, `programID`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `volunteers`
+-- Table structure for table `program`
 --
 
 CREATE TABLE IF NOT EXISTS `program` (
@@ -81,7 +81,7 @@ CREATE TABLE IF NOT EXISTS `program` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
 
 --
--- Dumping data for table `volunteers`
+-- Inserting data for table `program`
 --
 
 INSERT INTO `program` (`programID`,`programName`,`enrollmentLimit`) VALUES
