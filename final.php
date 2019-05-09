@@ -36,7 +36,8 @@ function openCity(evt, cityName) {
 
   <li><a href="index.html">Home</a></li>
   <li><a href="final.php">Final Schedule</a></li>
-  <li><a href="request.html">Make Requests</a></li>
+  <li><a href="request.php">Make Requests</a></li>
+  <li><a href="admin.php">Admin Schedule Approval</a></li>
 </ul>
 <br>
 
@@ -77,10 +78,11 @@ function openCity(evt, cityName) {
 						 $result = $results->get_result();
 
 						 // determine how many rows were returned
-						if($result->num_rows === 0){ 
+						if($result->num_rows === 0){  
 							exit('Enter your ID number to view your schedule');
 						}
 						else{
+						echo 'success';
 						 $num_results = $result->num_rows;
 
 						 // loop through each row building the table rows and data columns

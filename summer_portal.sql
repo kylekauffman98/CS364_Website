@@ -41,16 +41,16 @@ CREATE TABLE IF NOT EXISTS `cadet` (
 --
 
 INSERT INTO `cadet` (`studentID`, `studentFN`, `studentLN`) VALUES
-(1275969, 'Kyle', 'Kauffman'),
+(7654321, 'Kyle', 'Kauffman'),
 (1234567, 'Kishan', 'Patel');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `schedule`
+-- Table structure for table `finalSchedule`
 --
 
-CREATE TABLE IF NOT EXISTS `schedule` (
+CREATE TABLE IF NOT EXISTS `finalSchedule` (
   `programID` int NOT NULL,
   `studentID` int NOT NULL,
   `periodNum` int DEFAULT NULL,
@@ -59,10 +59,25 @@ CREATE TABLE IF NOT EXISTS `schedule` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
 
-INSERT INTO `schedule` (`studentID`, `periodNum`, `programID`) VALUES
-(1275969, 1, 1),
-(1275969, 2, 2),
-(1275969, 3, 3),
+CREATE TABLE IF NOT EXISTS `tempSchedule` (
+  `period1programID1` int NOT NULL,
+  `period1programID2` int NOT NULL,
+  `period1programID3` int NOT NULL,
+  `period2programID1` int NOT NULL,
+  `period2programID2` int NOT NULL,
+  `period2programID3` int NOT NULL,
+  `period3programID1` int NOT NULL,
+  `period3programID2` int NOT NULL,
+  `period3programID3` int NOT NULL,
+  `studentID` int NOT NULL,
+  PRIMARY KEY (`studentID`),
+  FOREIGN KEY (`studentID`) REFERENCES `cadet` (`studentID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
+
+INSERT INTO `finalSchedule` (`studentID`, `periodNum`, `programID`) VALUES
+(7654321, 1, 1),
+(7654321, 2, 2),
+(7654321, 3, 3),
 (1234567, 1, 2),
 (1234567, 2, 3),
 (1234567, 3, 1);
