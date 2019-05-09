@@ -13,7 +13,8 @@
   <li><a href="index.html">Home</a></li>
   <li><a href="final.php">Final Schedule</a></li>
   <li><a href="request.php">Make Requests</a></li>
-  <li><a href="admin.php">Admin Schedule Approval</a></li>
+  <li><a href="admin.php">View Requested Schedule</a></li>
+  <li><a href="admin2.php">Admin Scheduler</a></li>
 
 </ul>
 <br>
@@ -268,7 +269,6 @@
 						 
 						 if($studentID->num_rows>0)
 						 {
-							echo 'in if statement';
 							 $results = $db->prepare('REPLACE INTO tempSchedule (period1programID1,period1programID2 ,period1programID3 ,period2programID1,period2programID2,period2programID3 ,period3programID1 ,period3programID2,period3programID3,studentID) VALUES(?,?,?,?,?,?,?,?,?,?);');
 							 $results->bind_param("iiiiiiiiii", $inputFirstPeriod1, $inputFirstPeriod2, $inputFirstPeriod3, $inputSecondPeriod1, $inputSecondPeriod2, $inputSecondPeriod3, $inputThirdPeriod1, $inputThirdPeriod2, $inputThirdPeriod3, $inputID);
 							 $results->execute();
@@ -279,7 +279,7 @@
 						 }
 
 						 // close the database connection
-						
+						 
 						 $db->close();
 
 					   ?>

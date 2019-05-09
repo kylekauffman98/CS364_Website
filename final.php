@@ -1,32 +1,8 @@
-<!-- This html file displays the page allowing students to view their final summer schedules by entering their unique ID.-->
+<!-- This html file displays the page allowing students to submit summer preference requests.-->
 
 <html>
 <head>
 <link rel="stylesheet" href="csl.css">
-
-<script>
-function openCity(evt, cityName) {
-  // Declare all variables
-  var i, tabcontent, tablinks;
-
-  // Get all elements with class="tabcontent" and hide them
-  tabcontent = document.getElementsByClassName("tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
-  }
-
-  // Get all elements with class="tablinks" and remove the class "active"
-  tablinks = document.getElementsByClassName("tablinks");
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active", "");
-  }
-
-  // Show the current tab, and add an "active" class to the button that opened the tab
-  document.getElementById(cityName).style.display = "block";
-  evt.currentTarget.className += " active";
-}
-</script>
-
 </head>
 <body >
 <div id="header">
@@ -37,23 +13,27 @@ function openCity(evt, cityName) {
   <li><a href="index.html">Home</a></li>
   <li><a href="final.php">Final Schedule</a></li>
   <li><a href="request.php">Make Requests</a></li>
-  <li><a href="admin.php">Admin Schedule Approval</a></li>
+  <li><a href="admin.php">View Requested Schedule</a></li>
+  <li><a href="admin2.php">Admin Scheduler</a></li>
+
 </ul>
 <br>
+<table style="width:100%" bgcolor="#efefef" >  
 
 
-<h2>Final Summer Schedule </h2>
 
+<!-- Still need to list out schedule then allows option to submit final schedule -->
 <form action= "" name = "myForm" method="POST">
-   
-  Input Your Student ID:<br>
-  <input type="text" name="ID">
-  <br>
-  <input type="submit" value="Submit" name = "SubmitButton">
-</form>
-<table border="1" cellpadding="4">
-             <tr><th>ID Number</th><th>First Name</th><th>Last Name</th><th>Period</th><th>Program</th></tr>
+<input type="submit" value="submit" name = "SubmitButton">
+		  <td>
+		  Student ID:<br>
+		  <input type="text" name="studentID" >
+		  <br>
+		  </td>	
+             <tr><th align="left">ID Number</th><th align="left">First Name</th><th align="left">Last Name</th><th align="left">Period 1</th><th align="left">Period 2 </th><th align="left">Period 3 </th></tr>
 			<?php 
+				error_reporting(E_ALL);
+				ini_set('display_errors', 1);
 
 						 // open connection to the database on LOCALHOST with 
 						 // userid of 'root', password '', and database 'csl'
@@ -68,21 +48,46 @@ function openCity(evt, cityName) {
 						   exit;
 						 }
 						 if (isset($_POST['SubmitButton'])){
-							 $input = $_POST['ID'];
+							 $input = $_POST['studentID'];
 						 }
 						 // run the SQL query to retrieve the service partner info
 
-						 $results = $db->prepare('SELECT c.studentID, c.studentFN, c.studentLN, s.periodNum, p.programName FROM cadet c INNER JOIN finalSchedule s ON c.studentID = s.studentID INNER JOIN program p ON s.programID = p.programID WHERE c.studentID = ? ORDER BY s.periodNum ASC;');
-						 $results->bind_param("i", $input);
-						 $results->execute();
-						 $result = $results->get_result();
+						 $results1 = $db->prepare('SELECT c.studentID, c.studentFN, c.studentLN, p1.programName AS per1, p2.programName AS per2, p3.programName AS per3
+FROM 
+	(SELECT cadet.studentID, cadet.studentFN, cadet.studentLN
+	FROM cadet) c,
+    
+    ( SELECT program.programName 
+		FROM program inner JOIN finalSchedule
+        ON finalSchedule.period1programID= program.programID
+        WHERE finalSchedule.studentID = ?) p1,
+       
+	(SELECT program.programName 
+	 	FROM program INNER JOIN finalSchedule
+         ON finalSchedule.period2programID = program.programID
+          WHERE finalSchedule.studentID = ?) p2,
+         
+	( SELECT program.programName 
+	FROM program INNER JOIN finalSchedule
+	ON finalSchedule.period3programID = program.programID
+     WHERE finalSchedule.studentID = ?) p3,
+    
+    ( SELECT finalSchedule.studentID 
+	FROM  finalSchedule
+     WHERE finalSchedule.studentID = ?) temp
+    
+WHERE c.studentID = ?
+AND c.studentID = temp.studentID;');
 
-						 // determine how many rows were returned
-						if($result->num_rows === 0){  
+						 $results1->bind_param("iiiii", $input,$input,$input,$input,$input);
+						 $results1->execute();
+						 $result = $results1->get_result();
+
+						 if($result->num_rows === 0){  
 							exit('Enter your ID number to view your schedule');
 						}
 						else{
-						echo 'success';
+
 						 $num_results = $result->num_rows;
 
 						 // loop through each row building the table rows and data columns
@@ -90,14 +95,13 @@ function openCity(evt, cityName) {
 						 for ($i=0; $i < $num_results; $i++) 
 						 {
 						   $row= $result->fetch_assoc();
-						   print '<tr><td>'.$row['studentID'].'</td><td>'.$row['studentFN'].'</td><td>'.$row['studentLN'].'</td><td>'.$row['periodNum'].'</td><td>'.$row['programName'].'</td></tr>';
+						   print '<tr><td>'.$row['studentID'].'</td><td>'.$row['studentFN'].'</td><td>'.$row['studentLN'].'</td><td>'.$row['per1'].'</td><td>'.$row['per2'].'</td><td>'.$row['per3'].'</td></tr>';
 						 }
 
 						 // deallocate memory for the results and close the database connection
 						}
 						 $result->free();
 						 $db->close();
-
 					   ?>
 </table>
 

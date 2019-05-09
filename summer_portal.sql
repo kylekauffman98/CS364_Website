@@ -51,13 +51,13 @@ INSERT INTO `cadet` (`studentID`, `studentFN`, `studentLN`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `finalSchedule` (
-  `programID` int NOT NULL,
+  `period1programID` int NOT NULL,
+  `period2programID` int NOT NULL,
+  `period3programID` int NOT NULL,
   `studentID` int NOT NULL,
-  `periodNum` int DEFAULT NULL,
-  PRIMARY KEY (`studentID`, `periodNum`, `programID`),
+  PRIMARY KEY (`studentID`),
   FOREIGN KEY (`studentID`) REFERENCES `cadet` (`studentID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
-
 
 CREATE TABLE IF NOT EXISTS `tempSchedule` (
   `period1programID1` int NOT NULL,
@@ -74,13 +74,7 @@ CREATE TABLE IF NOT EXISTS `tempSchedule` (
   FOREIGN KEY (`studentID`) REFERENCES `cadet` (`studentID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
-INSERT INTO `finalSchedule` (`studentID`, `periodNum`, `programID`) VALUES
-(7654321, 1, 1),
-(7654321, 2, 2),
-(7654321, 3, 3),
-(1234567, 1, 2),
-(1234567, 2, 3),
-(1234567, 3, 1);
+
 
 -- --------------------------------------------------------
 
@@ -100,6 +94,16 @@ CREATE TABLE IF NOT EXISTS `program` (
 --
 
 INSERT INTO `program` (`programID`,`programName`,`enrollmentLimit`) VALUES
-(1, 'Jump', 300),
-(2, 'Soaring', 300),
-(3, 'ESET', 1100);
+(0, 'CSRP', 300),
+(1, 'Leave',300),
+(2, 'Academics', 300),
+(3, 'Cyber', 300),
+(4, 'Space', 300),
+(5, 'Jump', 300),
+(6, 'RPA', 300),
+(7, 'Soaring', 300),
+(8, 'BCT', 300),
+(9, 'EST', 300),
+(10, 'Operations AF', 300),
+(11, 'Ops Group', 300);
+	
